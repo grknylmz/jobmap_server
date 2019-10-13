@@ -1,6 +1,7 @@
 import * as express from "express";
 import Controller from "../interfaces/controller.interface";
 import jobModel from "./job.model";
+
 class JobController implements Controller {
   public path = "/jobs";
   public router = express.Router();
@@ -17,7 +18,10 @@ class JobController implements Controller {
     request: express.Request,
     response: express.Response
   ) => {
+    //Get the jobs in DB
     const jobs = await this.job.find();
+    //Then try to scrape websites from other coutries
+
     response.send(jobs);
   };
 }
